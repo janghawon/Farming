@@ -1,10 +1,17 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 public class ElementSpawner : MonoBehaviour
 {
     [SerializeField] private List<GameObject> _elementList = new List<GameObject>();
+    TilemapRenderer _tileMap;
+
+    private void Awake()
+    {
+        _tileMap = GameObject.Find("GridMap").transform.Find("SpawnRange").GetComponent<TilemapRenderer>();
+    }
 
     private void Start()
     {
@@ -20,6 +27,7 @@ public class ElementSpawner : MonoBehaviour
     private void SpawnElement(GameObject element)
     {
         GameObject ele = Instantiate(element);
+
     }
 
     private void Update()
