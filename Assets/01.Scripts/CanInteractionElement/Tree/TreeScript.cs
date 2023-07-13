@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 enum TreeType
 {
@@ -39,11 +40,11 @@ public class TreeScript : InteractionBase
         TreeType _type = TreeType.Basic;
         if(idx <= 5)
         {
-            _type = TreeType.Little;
+            _type = TreeType.Basic;
         }
         else if(idx <= 8)
         {
-            _type = TreeType.Basic;
+            _type = TreeType.Little;
         }
         else
         {
@@ -54,13 +55,14 @@ public class TreeScript : InteractionBase
         _dropTable = _treeSelecter[_type].treeDropTable;
     }
 
-    protected override void InteractItem()
-    {
-
-    }
 
     private void ItemDrop()
     {
 
+    }
+
+    protected override void InteractElement()
+    {
+        transform.DOShakePosition(0.08f, 0.2f, 5);
     }
 }
