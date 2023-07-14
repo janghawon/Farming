@@ -38,8 +38,8 @@ public class ElementSpawner : MonoBehaviour
             randomCell = new Vector2(Random.Range(bound.min.x, bound.max.x),
                                          Random.Range(bound.min.y, bound.max.y));
 
-            RaycastHit2D rangehit = Physics2D.Raycast(randomCell, Vector2.down, _rangeMask);
-            RaycastHit2D elehit = Physics2D.Raycast(randomCell, Vector2.down, _eleMask);
+            RaycastHit2D rangehit = Physics2D.Raycast(randomCell, Vector2.down, 1 << _rangeMask);
+            RaycastHit2D elehit = Physics2D.Raycast(randomCell, Vector2.down, 1 << _eleMask);
 
             if (rangehit.collider != null && elehit.collider == null)
                 break;
@@ -59,15 +59,19 @@ public class ElementSpawner : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.K))
         {
-            Vector2 randomCell = new Vector2(Random.Range(bound.min.x, bound.max.x),
-                                         Random.Range(bound.min.y, bound.max.y));
+            Vector2 randomCell = new Vector2(Random.Range(-22, 14),
+                                             Random.Range(-9, 12));
 
-            Collider2D rangehit = Physics2D.OverlapPoint(randomCell) as TilemapCollider2D;
-            Collider2D elehit = Physics2D.OverlapPoint(randomCell) as TilemapCollider2D;
+            Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            pos.z = 0;
+            Debug.Log(pos);
 
-            Debug.Log(randomCell);
-            Debug.Log(rangehit);
-            Debug.Log(elehit);
+            RaycastHit2D rangehit = Physics2D.Raycast(pos, Vector2.down, 1 << _rangeMask);
+            RaycastHit2D elehit = Physics2D.Raycast(pos, Vector2.down, 1 << _eleMask);
+
+            //Debug.Log(randomCell);
+            Debug.Log(rangehit.collider);
+            Debug.Log(elehit.collider);
         }
         
     }
