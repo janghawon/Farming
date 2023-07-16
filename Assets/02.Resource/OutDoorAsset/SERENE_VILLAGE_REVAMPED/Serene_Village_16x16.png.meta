@@ -432,27 +432,6 @@ TextureImporter:
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Serene_Village_16x16_15
-      rect:
-        serializedVersion: 2
-        x: 129
-        y: 496
-        width: 14
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 0dc2e8cdcf3d54346a1a5c83b62d47c8
-      internalID: -335725191
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
       name: Serene_Village_16x16_16
       rect:
         serializedVersion: 2
@@ -574,27 +553,6 @@ TextureImporter:
       bones: []
       spriteID: 20cf320fae20f4d42a02856171bd396c
       internalID: -1134796675
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Serene_Village_16x16_22
-      rect:
-        serializedVersion: 2
-        x: 128
-        y: 480
-        width: 16
-        height: 15
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a90c939a1eb648d459a809c31f02c05b
-      internalID: 1360034667
       vertices: []
       indices: 
       edges: []

@@ -21,7 +21,6 @@ public class TreeScript : InteractionBase
 {
     [SerializeField] private TreeData[] _treeDatas = new TreeData[3];
     private Dictionary<TreeType, TreeData> _treeSelecter = new Dictionary<TreeType, TreeData>();
-    private SpriteRenderer _spriteRenderer;
 
     private DropTable _dropTable;
 
@@ -64,5 +63,10 @@ public class TreeScript : InteractionBase
     protected override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
+    }
+
+    protected override void InteractionBefore(bool onOutLine)
+    {
+        base.InteractionBefore(onOutLine);
     }
 }

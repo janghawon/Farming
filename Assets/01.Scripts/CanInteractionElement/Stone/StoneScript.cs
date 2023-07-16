@@ -20,8 +20,6 @@ public class StoneScript : InteractionBase
 {
     [SerializeField] private StoneData[] _stoneDatas = new StoneData[2];
     private Dictionary<StoneType, StoneData> _stoneSelecter = new Dictionary<StoneType, StoneData>();
-    private SpriteRenderer _spriteRenderer;
-
     private DropTable _dropTable;
 
     private void Awake()
@@ -54,5 +52,10 @@ public class StoneScript : InteractionBase
     protected override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
+    }
+
+    protected override void InteractionBefore(bool onOutLine)
+    {
+        base.InteractionBefore(onOutLine);
     }
 }

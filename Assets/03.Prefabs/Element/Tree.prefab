@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 2166862294699711079}
   - component: {fileID: 2166862294699711076}
-  - component: {fileID: 2166862294699711078}
   - component: {fileID: 1146177631025804077}
+  - component: {fileID: 2166862294699711078}
   - component: {fileID: 1031625055}
   - component: {fileID: 891222389959144550}
   m_Layer: 7
@@ -88,25 +88,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2166862294699711078
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2166862294699711077}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb0fca74b17ec934291d3df72ca81795, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _treeDatas:
-  - treeImage: {fileID: 21300000, guid: 55ef2f1497e9b1e45bfc77903c1602a5, type: 2}
-    treeDropTable: {fileID: 11400000, guid: 5cbcf22331bab5140a88f5013a02785b, type: 2}
-  - treeImage: {fileID: 21300000, guid: 9b9c532beedf1664e80ee0629a8deb29, type: 2}
-    treeDropTable: {fileID: 11400000, guid: 00f9e6770e72a434fa76c3dd0d173ad6, type: 2}
-  - treeImage: {fileID: 21300000, guid: b86c27812060b5f4096f78bb818c4112, type: 2}
-    treeDropTable: {fileID: 11400000, guid: a5392b5e25d3bb748a495d191894ac5e, type: 2}
 --- !u!114 &1146177631025804077
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -135,10 +116,31 @@ MonoBehaviour:
   - {x: 0.026322424, y: -1.1593369, z: 0}
   m_ShapePathHash: -1872007890
   m_Mesh: {fileID: 0}
-  m_InstanceId: 36364
+  m_InstanceId: 37326
   m_LocalBounds:
     m_Center: {x: -0.02229911, y: -0.96734524, z: 0}
     m_Extent: {x: 0.6228078, y: 0.19199166, z: 0}
+--- !u!114 &2166862294699711078
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2166862294699711077}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb0fca74b17ec934291d3df72ca81795, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _outLineMat: {fileID: 2100000, guid: 8736dd1509a802d44bced356a62183ff, type: 2}
+  _litMat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
+  _treeDatas:
+  - treeImage: {fileID: 21300000, guid: 55ef2f1497e9b1e45bfc77903c1602a5, type: 2}
+    treeDropTable: {fileID: 11400000, guid: 5cbcf22331bab5140a88f5013a02785b, type: 2}
+  - treeImage: {fileID: 21300000, guid: 9b9c532beedf1664e80ee0629a8deb29, type: 2}
+    treeDropTable: {fileID: 11400000, guid: 00f9e6770e72a434fa76c3dd0d173ad6, type: 2}
+  - treeImage: {fileID: 21300000, guid: b86c27812060b5f4096f78bb818c4112, type: 2}
+    treeDropTable: {fileID: 11400000, guid: a5392b5e25d3bb748a495d191894ac5e, type: 2}
 --- !u!61 &1031625055
 BoxCollider2D:
   m_ObjectHideFlags: 0
