@@ -6,11 +6,12 @@ TagManager:
   tags:
   - CanInteraction
   - Range
+  - Element
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - Range
+  - Limit
   - Water
   - UI
   - Map

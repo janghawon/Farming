@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 6904646008789776415}
   - component: {fileID: 6904646008789776414}
   - component: {fileID: 6904646008789776401}
+  - component: {fileID: 2340217437907383175}
+  - component: {fileID: 2051462465644978476}
   m_Layer: 7
   m_Name: Stone
   m_TagString: Element
@@ -116,7 +118,7 @@ MonoBehaviour:
   - {x: -0.74994206, y: -0.1099319, z: 0}
   m_ShapePathHash: 1694626817
   m_Mesh: {fileID: 0}
-  m_InstanceId: -93820
+  m_InstanceId: -2496
   m_LocalBounds:
     m_Center: {x: 0.015355706, y: 0.046606302, z: 0}
     m_Extent: {x: 0.7652978, y: 0.6667367, z: 0}
@@ -137,3 +139,55 @@ MonoBehaviour:
     stoneDropTable: {fileID: 11400000, guid: fe93675df2b91524d94eeb89ac53d705, type: 2}
   - stoneImage: {fileID: 21300000, guid: c8b97ca7d7ee3214d87fb5a96b2dcf41, type: 2}
     stoneDropTable: {fileID: 11400000, guid: 671f1499b4d40854cb3e04572f40f89b, type: 2}
+--- !u!61 &2340217437907383175
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904646008789776400}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.6210526}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.75, y: 1.4375}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.75, y: 0.11421138}
+  m_EdgeRadius: 0
+--- !u!61 &2051462465644978476
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6904646008789776400}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.05955124, y: 0.066081285}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.75, y: 1.4375}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.8697624, y: 2.2871156}
+  m_EdgeRadius: 0
