@@ -13,14 +13,29 @@ public enum PlayerDirection
 
 public class PlayerInput : MonoBehaviour
 {
+    BoxCollider2D _col;
     [SerializeField] private UnityEvent<Vector3> _moveEvent;
     [SerializeField] private UnityEvent<Vector3, PlayerDirection> _animationEvent;
+    [SerializeField] private UnityEvent<int> setSorting = null;
     Vector3 dir;
     [SerializeField] private PlayerDirection _pDir;
 
     private void Awake()
     {
+        _col = GetComponent<BoxCollider2D>();
         _pDir = PlayerDirection.front;
+    }
+
+    private void ColliderOffset(PlayerDirection _p)
+    {
+        if(_p == PlayerDirection.left)
+        {
+            _col.offset = new Vector2(0.37f, -0.6f);
+        }
+        else
+        {
+            _col.offset = new Vector2(-0.38f, -0.6f);
+        }    
     }
 
     private void SetPDir()
@@ -41,6 +56,7 @@ public class PlayerInput : MonoBehaviour
         {
             _pDir = PlayerDirection.front;
         }
+        ColliderOffset(_pDir);
     }
 
     private void Update()
@@ -49,5 +65,10 @@ public class PlayerInput : MonoBehaviour
         SetPDir();
         _moveEvent?.Invoke(dir);
         _animationEvent?.Invoke(dir, _pDir);
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+
     }
 }

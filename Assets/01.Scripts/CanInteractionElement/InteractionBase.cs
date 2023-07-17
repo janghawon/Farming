@@ -16,9 +16,6 @@ public abstract class InteractionBase : MonoBehaviour
         {
             _spriteRenderer.material = _outLineMat;
         }
-            
-
-
     }
 
 }
