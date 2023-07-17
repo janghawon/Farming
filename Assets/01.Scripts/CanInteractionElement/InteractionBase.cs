@@ -18,4 +18,8 @@ public abstract class InteractionBase : MonoBehaviour
         }
     }
 
+    public void SetSortingOrder(int num)
+    {
+        _spriteRenderer.sortingOrder = num;
+    }
 }
