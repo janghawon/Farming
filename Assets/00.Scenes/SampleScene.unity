@@ -10438,9 +10438,12 @@ MonoBehaviour:
   - {fileID: 7400000, guid: c5d468aad2fe4b3479525dc1b2dcde4a, type: 2}
   - {fileID: 7400000, guid: e0412b8cb40ac564783c1b39461ff8d9, type: 2}
   - {fileID: 7400000, guid: 6ad3bc223e3a97c4a97fd7c45e058607, type: 2}
-  - {fileID: 7400000, guid: 3efb9651118fb20428c36974a31c41e5, type: 2}
+  - {fileID: 7400000, guid: 2ae4e5042ece4e94fbb0382edd44d0bf, type: 2}
   - {fileID: 7400000, guid: 3ce708ccf3cad9c4c9722fbf6ee8d9b5, type: 2}
   - {fileID: 7400000, guid: 29aa61d947dfeef439ff2c872dc1a9f6, type: 2}
+  - {fileID: 7400000, guid: 2eaef7eb69691a847a17d1e351ce94e4, type: 2}
+  - {fileID: 7400000, guid: e48cbad48455621428d8a2256f86ae89, type: 2}
+  - {fileID: 7400000, guid: 6226be0efd400304caccf2bd9276f7c5, type: 2}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -11153,6 +11156,7 @@ GameObject:
   - component: {fileID: 917432371}
   - component: {fileID: 917432372}
   - component: {fileID: 917432373}
+  - component: {fileID: 917432374}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -11336,6 +11340,21 @@ MonoBehaviour:
   m_LocalBounds:
     m_Center: {x: -0.38, y: -0.59999996, z: 0}
     m_Extent: {x: 0.5, y: 0.100000024, z: 0}
+--- !u!114 &917432374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 917432366}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: afbaed1024fe89c4c8cf92bb2b554970, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _layerMask:
+    serializedVersion: 2
+    m_Bits: 128
 --- !u!1 &954649133
 GameObject:
   m_ObjectHideFlags: 0

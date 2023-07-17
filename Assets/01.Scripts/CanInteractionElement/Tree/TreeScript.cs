@@ -65,8 +65,4 @@ public class TreeScript : InteractionBase
         transform.DOShakePosition(0.08f, 0.2f, 5);
     }
 
-    protected override void InteractionBefore(bool onOutLine)
-    {
-        base.InteractionBefore(onOutLine);
-    }
 }

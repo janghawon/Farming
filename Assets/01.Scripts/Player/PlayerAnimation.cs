@@ -6,7 +6,6 @@ public class PlayerAnimation : MonoBehaviour
 {
     Animator _animator;
     [SerializeField] private AnimatorOverrideController _controller;
-    SpriteRenderer _sr;
     [SerializeField] private AnimationClip[] clips;
 
     private readonly int _walkHash = Animator.StringToHash("isWalk");
@@ -15,7 +14,6 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
-        _sr = GetComponent<SpriteRenderer>();
     }
 
     private void AnimationSet(int idle, int walk, int atk)
@@ -37,11 +35,9 @@ public class PlayerAnimation : MonoBehaviour
                 break;
             case PlayerDirection.right:
                 AnimationSet(6, 7, 8);
-                _sr.flipX = false;
                 break;
             case PlayerDirection.left:
-                AnimationSet(6, 7, 8);
-                _sr.flipX = true;
+                AnimationSet(9, 10, 11);
                 break;
         }
         if(dir.sqrMagnitude != 0)
