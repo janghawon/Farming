@@ -21,12 +21,4 @@ public abstract class InteractionBase : MonoBehaviour
 
     }
 
-    private void Update()
-    {
-        if(Input.GetKeyDown(KeyCode.W))
-        {
-            InteractElement();
-            InteractionBefore(false);
-        }
-    }
 }
