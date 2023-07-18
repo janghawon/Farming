@@ -44,7 +44,7 @@ public class StoneScript : InteractionBase
         _entitySO = _stoneSelecter[_type].stoneEntitySo;
     }
 
-    protected override void InteractElement()
+    public override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
     }

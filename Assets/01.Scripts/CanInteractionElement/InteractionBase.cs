@@ -10,7 +10,7 @@ public abstract class InteractionBase : MonoBehaviour
     [SerializeField] private Material _outLineMat;
     [SerializeField] private Material _litMat;
     protected SpriteRenderer _spriteRenderer;
-    protected abstract void InteractElement();
+    public abstract void InteractElement();
 
     private void Update()
     {
@@ -28,6 +28,7 @@ public abstract class InteractionBase : MonoBehaviour
     }
     public void SelectInteraction()
     {
+        CollectResourceBar.Instance.isFinish = false;
         CollectResourceBar.Instance.
         SetAndStart(_entitySO.Range_Speed.x, _entitySO.Range_Speed.y, _entitySO.DestroyCount, _entitySO.DestroyCount);
     }

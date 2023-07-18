@@ -54,7 +54,7 @@ public class TreeScript : InteractionBase
         _entitySO = _treeSelecter[_type].treeEntitySo;
     }
 
-    protected override void InteractElement()
+    public override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
     }

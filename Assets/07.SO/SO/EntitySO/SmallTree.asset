@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d3662ede98fbd45994ce78ec1d0c45, type: 3}
   m_Name: SmallTree
   m_EditorClassIdentifier: 
+  Range_Speed: {x: 80, y: 8}
+  DestroyCount: 2

@@ -28,6 +28,7 @@ public class CollectResourceBar : MonoBehaviour
     [SerializeField] float _maxCount;
     [SerializeField] float _dCount;
     bool isMove;
+    public bool isFinish;
 
     private void Awake()
     {
@@ -58,22 +59,25 @@ public class CollectResourceBar : MonoBehaviour
 
     public void SetAndStart(float rangeArea, float speed, float destroyCount, float maxCount)
     {
-        _collectRangeBar.enabled = true;
-        _collectRangeImg.enabled = true;
-        _keyImage.enabled = true;
+        if(!isFinish)
+        {
+            _collectRangeBar.enabled = true;
+            _collectRangeImg.enabled = true;
+            _keyImage.enabled = true;
 
-        _range = rangeArea;
-        _speed = speed;
-        _dCount = destroyCount;
-        _maxCount = maxCount;
-        _keyImage.sprite = _normalKeyImage;
-        _collectRange.sizeDelta = new Vector2(rangeArea, 50);
-        float dex = Random.Range(rangeArea * 0.5f, -rangeArea * 0.5f);
-        _collectRange.localPosition = new Vector3(dex, 0, 0);
-        _maxSpeed = speed;
+            _range = rangeArea;
+            _speed = speed;
+            _dCount = destroyCount;
+            _maxCount = maxCount;
+            _keyImage.sprite = _normalKeyImage;
+            _collectRange.sizeDelta = new Vector2(rangeArea, 50);
+            float dex = Random.Range(rangeArea * 0.5f, -rangeArea * 0.5f);
+            _collectRange.localPosition = new Vector3(dex, 0, 0);
+            _maxSpeed = speed;
 
-        isMove = true;
-        systemStart = true;
+            isMove = true;
+            systemStart = true;
+        }
     }
 
     float t;
@@ -94,6 +98,7 @@ public class CollectResourceBar : MonoBehaviour
         {
             _collectRangeImg.color = _sucessGreen;
             isMove = false;
+            pce._selectIb.InteractElement();
             _dCount--;
         }
         _maxCount--;
@@ -109,6 +114,7 @@ public class CollectResourceBar : MonoBehaviour
 
             if(_dCount == 0)
             {
+                isFinish = true;
                 pce._selectIb.DropItem();
             }
         }
@@ -130,8 +136,6 @@ public class CollectResourceBar : MonoBehaviour
 
     private void Update()
     {
-        MoveKey();
-
         if(Input.GetKeyDown(KeyCode.E) && systemStart)
         {
             StopKey();
@@ -139,6 +143,7 @@ public class CollectResourceBar : MonoBehaviour
             isMove = false;
             StartCoroutine(SystemCool());
         }
+        MoveKey();
     }
 
     IEnumerator SystemCool()
