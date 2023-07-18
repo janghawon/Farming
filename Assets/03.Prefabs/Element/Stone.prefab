@@ -134,13 +134,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ac5953facfdcc149abd6d622213ea41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  onOutLine: 0
   _outLineMat: {fileID: 2100000, guid: 8736dd1509a802d44bced356a62183ff, type: 2}
   _litMat: {fileID: 2100000, guid: a97c105638bdf8b4a8650670310a4cd3, type: 2}
   _stoneDatas:
   - stoneImage: {fileID: 21300000, guid: 4a27712af3ecaf54392f53108781a63c, type: 2}
     stoneDropTable: {fileID: 11400000, guid: fe93675df2b91524d94eeb89ac53d705, type: 2}
+    stoneEntitySo: {fileID: 11400000, guid: 4735fa983ab2a4d4badc1e0bbb4f61f4, type: 2}
   - stoneImage: {fileID: 21300000, guid: c8b97ca7d7ee3214d87fb5a96b2dcf41, type: 2}
     stoneDropTable: {fileID: 11400000, guid: 671f1499b4d40854cb3e04572f40f89b, type: 2}
+    stoneEntitySo: {fileID: 11400000, guid: dc17aad9609f3664b900f6f8c72c4114, type: 2}
 --- !u!61 &2340217437907383175
 BoxCollider2D:
   m_ObjectHideFlags: 0

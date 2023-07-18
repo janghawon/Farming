@@ -14,13 +14,13 @@ class StoneData
 {
     public Sprite stoneImage;
     public DropTable stoneDropTable;
+    public EntitySO stoneEntitySo;
 }
 
 public class StoneScript : InteractionBase
 {
     [SerializeField] private StoneData[] _stoneDatas = new StoneData[2];
     private Dictionary<StoneType, StoneData> _stoneSelecter = new Dictionary<StoneType, StoneData>();
-    private DropTable _dropTable;
 
     private void Awake()
     {
@@ -41,12 +41,7 @@ public class StoneScript : InteractionBase
         }
         _spriteRenderer.sprite = _stoneSelecter[_type].stoneImage;
         _dropTable = _stoneSelecter[_type].stoneDropTable;
-    }
-
-
-    private void ItemDrop()
-    {
-
+        _entitySO = _stoneSelecter[_type].stoneEntitySo;
     }
 
     protected override void InteractElement()

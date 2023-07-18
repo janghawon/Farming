@@ -15,14 +15,13 @@ class TreeData
 {
     public Sprite treeImage;
     public DropTable treeDropTable;
+    public EntitySO treeEntitySo;
 }
 
 public class TreeScript : InteractionBase
 {
     [SerializeField] private TreeData[] _treeDatas = new TreeData[3];
     private Dictionary<TreeType, TreeData> _treeSelecter = new Dictionary<TreeType, TreeData>();
-
-    private DropTable _dropTable;
 
     private void Awake()
     {
@@ -52,12 +51,7 @@ public class TreeScript : InteractionBase
 
         _spriteRenderer.sprite = _treeSelecter[_type].treeImage;
         _dropTable = _treeSelecter[_type].treeDropTable;
-    }
-
-
-    private void ItemDrop()
-    {
-
+        _entitySO = _treeSelecter[_type].treeEntitySo;
     }
 
     protected override void InteractElement()

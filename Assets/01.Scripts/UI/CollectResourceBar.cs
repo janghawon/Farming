@@ -5,39 +5,75 @@ using UnityEngine.UI;
 
 public class CollectResourceBar : MonoBehaviour
 {
+    public static CollectResourceBar Instance;
+    bool systemStart;
+    PlayerCheckElement pce;
     [SerializeField] private float _maxSpeed;
     public float MaxSpeed => _maxSpeed;
 
     Image _collectRangeBar;
     RectTransform _collectRange;
+    [SerializeField] private Color _normaalRed;
+    [SerializeField] private Color _sucessGreen;
+    Image _collectRangeImg;
+
+    [SerializeField] private Sprite _normalKeyImage;
+    [SerializeField] private Sprite _pressKeyImage;
+    
     Image _keyImage;
     RectTransform _keyTrans;
 
+    float _range;
+    float _speed;
+    [SerializeField] float _maxCount;
+    [SerializeField] float _dCount;
     bool isMove;
 
     private void Awake()
     {
+        if(Instance != null)
+        {
+            Debug.LogError("!!!!!!");
+            return;
+        }
+        Instance = this;
+        pce = GameObject.Find("Player").GetComponent<PlayerCheckElement>();
         _collectRangeBar = GetComponent<Image>();
         _collectRange = transform.Find("CorrectRange").GetComponent<RectTransform>();
         _keyImage = transform.Find("Key").GetComponent<Image>();
         _keyTrans = _keyImage.GetComponent<RectTransform>();
+        _collectRangeImg = _collectRange.GetComponent<Image>();
     }
 
     private void Start()
     {
         _keyTrans.localPosition = Vector3.zero;
+
         _collectRangeBar.enabled = false;
+        _collectRangeImg.enabled = false;
+        _keyImage.enabled = false;
+
         isMove = false;
     }
 
-    public void SetAndStart(float rangeArea, float speed)
+    public void SetAndStart(float rangeArea, float speed, float destroyCount, float maxCount)
     {
         _collectRangeBar.enabled = true;
+        _collectRangeImg.enabled = true;
+        _keyImage.enabled = true;
+
+        _range = rangeArea;
+        _speed = speed;
+        _dCount = destroyCount;
+        _maxCount = maxCount;
+        _keyImage.sprite = _normalKeyImage;
         _collectRange.sizeDelta = new Vector2(rangeArea, 50);
         float dex = Random.Range(rangeArea * 0.5f, -rangeArea * 0.5f);
         _collectRange.localPosition = new Vector3(dex, 0, 0);
         _maxSpeed = speed;
+
         isMove = true;
+        systemStart = true;
     }
 
     float t;
@@ -52,9 +88,33 @@ public class CollectResourceBar : MonoBehaviour
 
     public void StopKey()
     {
+        _keyImage.sprite = _pressKeyImage;
+        _collectRangeImg.color = _normaalRed;
         if(IsOverlappingUI())
         {
+            _collectRangeImg.color = _sucessGreen;
+            isMove = false;
+            _dCount--;
+        }
+        _maxCount--;
 
+        if(_maxCount == 0)
+        {
+            isMove = false;
+            pce.canInteraction = true;
+
+            _collectRangeBar.enabled = false;
+            _collectRangeImg.enabled = false;
+            _keyImage.enabled = false;
+
+            if(_dCount == 0)
+            {
+                pce._selectIb.DropItem();
+            }
+        }
+        else
+        {
+            SetAndStart(_range, _speed, _dCount, _maxCount);
         }
     }
 
@@ -72,9 +132,20 @@ public class CollectResourceBar : MonoBehaviour
     {
         MoveKey();
 
-        if(Input.GetKeyDown(KeyCode.E))
+        if(Input.GetKeyDown(KeyCode.E) && systemStart)
         {
             StopKey();
+            systemStart = false;
+            isMove = false;
+            StartCoroutine(SystemCool());
         }
+    }
+
+    IEnumerator SystemCool()
+    {
+        yield return new WaitForSeconds(1);
+        systemStart = true;
+        isMove = true;
+        _collectRangeImg.color = _normaalRed;
     }
 }
