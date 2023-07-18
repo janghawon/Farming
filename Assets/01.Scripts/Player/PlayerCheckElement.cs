@@ -6,7 +6,7 @@ public class PlayerCheckElement : MonoBehaviour
 {
     [SerializeField] private float _detectRange;
     [SerializeField] private LayerMask _layerMask;
-    public InteractionBase _selectIb;
+    public InteractionBase selectIb;
 
     Collider2D col;
 
@@ -34,7 +34,7 @@ public class PlayerCheckElement : MonoBehaviour
         {
             if(col.TryGetComponent<InteractionBase>(out InteractionBase ib))
             {
-                _selectIb = ib;
+                selectIb = ib;
                 ib.onOutLine = false;
             }
         }

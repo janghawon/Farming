@@ -29,6 +29,15 @@ public abstract class InteractionBase : MonoBehaviour
     public void SelectInteraction()
     {
         CollectResourceBar.Instance.isFinish = false;
+
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+        Vector2 canPos;
+        RectTransform _rect = GameObject.Find("UICANVAS").GetComponent<RectTransform>();
+        RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, screenPos, null, out canPos);
+        _rect = CollectResourceBar.Instance.gameObject.GetComponent<RectTransform>();
+
+        _rect.localPosition = canPos;
+
         CollectResourceBar.Instance.
         SetAndStart(_entitySO.Range_Speed.x, _entitySO.Range_Speed.y, _entitySO.DestroyCount, _entitySO.DestroyCount);
     }

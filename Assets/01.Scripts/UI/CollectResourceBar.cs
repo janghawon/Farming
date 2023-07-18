@@ -61,6 +61,7 @@ public class CollectResourceBar : MonoBehaviour
     {
         if(!isFinish)
         {
+            Debug.Log("Working");
             _collectRangeBar.enabled = true;
             _collectRangeImg.enabled = true;
             _keyImage.enabled = true;
@@ -98,30 +99,30 @@ public class CollectResourceBar : MonoBehaviour
         {
             _collectRangeImg.color = _sucessGreen;
             isMove = false;
-            pce._selectIb.InteractElement();
+            pce.selectIb.InteractElement();
             _dCount--;
         }
         _maxCount--;
 
         if(_maxCount == 0)
         {
-            isMove = false;
-            pce.canInteraction = true;
-
-            _collectRangeBar.enabled = false;
-            _collectRangeImg.enabled = false;
-            _keyImage.enabled = false;
-
-            if(_dCount == 0)
+            StartCoroutine(TurmCo());
+            if (_dCount == 0)
             {
-                isFinish = true;
-                pce._selectIb.DropItem();
+                pce.selectIb.DropItem();
             }
         }
-        else
-        {
-            SetAndStart(_range, _speed, _dCount, _maxCount);
-        }
+    }
+
+    IEnumerator TurmCo()
+    {
+        yield return new WaitForSeconds(1);
+        pce.canInteraction = true;
+        isMove = false;
+        _collectRangeBar.enabled = false;
+        _collectRangeImg.enabled = false;
+        _keyImage.enabled = false;
+        isFinish = true;
     }
 
     public bool IsOverlappingUI()
@@ -148,9 +149,13 @@ public class CollectResourceBar : MonoBehaviour
 
     IEnumerator SystemCool()
     {
-        yield return new WaitForSeconds(1);
-        systemStart = true;
-        isMove = true;
-        _collectRangeImg.color = _normaalRed;
+        if(!isFinish)
+        {
+            yield return new WaitForSeconds(1);
+            systemStart = true;
+            isMove = true;
+            _collectRangeImg.color = _normaalRed;
+            SetAndStart(_range, _speed, _dCount, _maxCount);
+        }
     }
 }
