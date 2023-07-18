@@ -28,11 +28,9 @@ public class CollectResourceBar : MonoBehaviour
         _keyTrans.localPosition = Vector3.zero;
         _collectRangeBar.enabled = false;
         isMove = false;
-
-        SetAndStart(100, 1);
     }
 
-    private void SetAndStart(float rangeArea, float speed)
+    public void SetAndStart(float rangeArea, float speed)
     {
         _collectRangeBar.enabled = true;
         _collectRange.sizeDelta = new Vector2(rangeArea, 50);
@@ -42,22 +40,21 @@ public class CollectResourceBar : MonoBehaviour
         isMove = true;
     }
 
+    float t;
     private void MoveKey()
     {
         if(isMove)
         {
-            Vector3 v = _keyTrans.localPosition;
-            v.x += 150 * Mathf.Sin(Time.fixedDeltaTime * _maxSpeed);
-            _keyTrans.localPosition = v;
+            _keyTrans.localPosition = new Vector3(Mathf.Sin(t) * 150, _keyTrans.localPosition.y);
+            t += Time.fixedDeltaTime;
         }
     }
 
-    [ContextMenu("StopKey")]
     public void StopKey()
     {
         if(IsOverlappingUI())
         {
-            Debug.Log("Sucess");
+
         }
     }
 
