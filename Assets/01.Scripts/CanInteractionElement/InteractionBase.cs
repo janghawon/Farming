@@ -30,7 +30,7 @@ public abstract class InteractionBase : MonoBehaviour
     {
         CollectResourceBar.Instance.isFinish = false;
 
-        Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position);
+        Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position + new Vector3(0, 1.5f, 0));
         Vector2 canPos;
         RectTransform _rect = GameObject.Find("UICANVAS").GetComponent<RectTransform>();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, screenPos, null, out canPos);

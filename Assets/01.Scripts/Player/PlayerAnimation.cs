@@ -23,6 +23,18 @@ public class PlayerAnimation : MonoBehaviour
         _controller["Front_Attack"] = clips[atk];
     }
 
+    public void PAttack()
+    {
+        _animator.SetBool(_atkHash, true);
+        StartCoroutine(Turm());
+    }
+
+    IEnumerator Turm()
+    {
+        yield return null;
+        _animator.SetBool(_atkHash, false);
+    }
+
     public void PAnimation(Vector3 dir, PlayerDirection _pDir)
     {
         switch (_pDir)

@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class CollectResourceBar : MonoBehaviour
 {
@@ -29,6 +30,9 @@ public class CollectResourceBar : MonoBehaviour
     [SerializeField] float _dCount;
     bool isMove;
     public bool isFinish;
+
+    [SerializeField] private UnityEvent _attackMotionEvent;
+    [SerializeField] private UnityEvent _endEvent;
 
     private void Awake()
     {
@@ -61,7 +65,6 @@ public class CollectResourceBar : MonoBehaviour
     {
         if(!isFinish)
         {
-            Debug.Log("Working");
             _collectRangeBar.enabled = true;
             _collectRangeImg.enabled = true;
             _keyImage.enabled = true;
@@ -97,6 +100,7 @@ public class CollectResourceBar : MonoBehaviour
         _collectRangeImg.color = _normaalRed;
         if(IsOverlappingUI())
         {
+            _attackMotionEvent?.Invoke();
             _collectRangeImg.color = _sucessGreen;
             isMove = false;
             pce.selectIb.InteractElement();
@@ -117,11 +121,9 @@ public class CollectResourceBar : MonoBehaviour
     IEnumerator TurmCo()
     {
         yield return new WaitForSeconds(1);
+        _endEvent?.Invoke();
         pce.canInteraction = true;
         isMove = false;
-        _collectRangeBar.enabled = false;
-        _collectRangeImg.enabled = false;
-        _keyImage.enabled = false;
         isFinish = true;
     }
 

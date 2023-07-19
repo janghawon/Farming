@@ -16,8 +16,10 @@ public class PlayerInput : MonoBehaviour
     BoxCollider2D _col;
     [SerializeField] private UnityEvent<Vector3> _moveEvent;
     [SerializeField] private UnityEvent<Vector3, PlayerDirection> _animationEvent;
+    [SerializeField] private UnityEvent _attackEvent;
     Vector3 dir;
     [SerializeField] private PlayerDirection _pDir;
+    [SerializeField] private LayerMask _layerMask;
 
     private void Awake()
     {
@@ -37,34 +39,79 @@ public class PlayerInput : MonoBehaviour
         }    
     }
 
-    private void SetPDir()
+    private void SetPDir(Vector3 _dir)
     {
-        if(dir.x > 0)
+        if(_dir.x > 0)
         {
             _pDir = PlayerDirection.right;
         }
-        else if(dir.x < 0)
+        else if(_dir.x < 0)
         {
             _pDir = PlayerDirection.left;
         }
-        else if(dir.y > 0)
+        else if(_dir.y > 0)
         {
             _pDir = PlayerDirection.back;
         }
-        else if(dir.y < 0)
+        else if(_dir.y < 0)
         {
             _pDir = PlayerDirection.front;
         }
-        ColliderOffset(_pDir);
+    }
+
+    private void CheckWhere(Vector2 dir)
+    {
+        if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
+        {
+            if(dir.x > 0)
+            {
+                _pDir = PlayerDirection.right;
+            }
+            else
+            {
+                _pDir = PlayerDirection.left;
+            }
+        }
+        else if (Mathf.Abs(dir.x) < Mathf.Abs(dir.y))
+        {
+            if (dir.y > 0)
+            {
+                _pDir = PlayerDirection.back;
+            }
+            else
+            {
+                _pDir = PlayerDirection.front;
+            }
+        }
+        else
+        {
+            _pDir = PlayerDirection.back;
+        }
+    }
+
+    private void GetAttackKey()
+    {
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Collider2D col = Physics2D.OverlapCircle(transform.position, 0.3f, _layerMask);
+            if (col != null)
+            {
+                Vector2 dir = (col.gameObject.transform.position - transform.position).normalized;
+                CheckWhere(dir);
+                _attackEvent?.Invoke();
+            }
+        }
     }
 
     private void Update()
     {
         dir = new Vector3(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"), 0);
-        SetPDir();
+        SetPDir(dir);
+        ColliderOffset(_pDir);
         _moveEvent?.Invoke(dir);
         _animationEvent?.Invoke(dir, _pDir);
         Detection();
+        GetAttackKey();
     }
 
     private void Detection()

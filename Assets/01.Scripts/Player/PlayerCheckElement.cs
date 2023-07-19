@@ -17,9 +17,15 @@ public class PlayerCheckElement : MonoBehaviour
         canInteraction = true;
     }
 
-    private void SelectInteraction()
+    public void ReactionIB()
     {
-        if(Input.GetKeyDown(KeyCode.E) && col != null && canInteraction)
+        InteractionBase ib = col.GetComponent<InteractionBase>();
+        ib.InteractElement();
+    }
+
+    public void SelectInteraction()
+    {
+        if(col != null && canInteraction)
         {
             canInteraction = false;
             InteractionBase ib = col.GetComponent<InteractionBase>();
@@ -38,6 +44,5 @@ public class PlayerCheckElement : MonoBehaviour
                 ib.onOutLine = false;
             }
         }
-        SelectInteraction();
     }
 }
