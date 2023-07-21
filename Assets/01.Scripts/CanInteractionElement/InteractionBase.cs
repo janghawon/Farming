@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public abstract class InteractionBase : MonoBehaviour
+public abstract class InteractionBase : PoolableMono
 {
     protected EntitySO _entitySO;
     protected DropTable _dropTable;
@@ -44,6 +44,8 @@ public abstract class InteractionBase : MonoBehaviour
 
     public virtual void DropItem()
     {
-
+        FXManager.Instance.SetFx(FXType.smoke, transform.position + new Vector3(0, 0.5f, 0), 2, 1);
+        //아이템 떨구기
+        PoolManager.Instance.Push(this);
     }
 }

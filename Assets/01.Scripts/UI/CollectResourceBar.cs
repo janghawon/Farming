@@ -7,7 +7,7 @@ using UnityEngine.Events;
 public class CollectResourceBar : MonoBehaviour
 {
     public static CollectResourceBar Instance;
-    bool systemStart;
+    [SerializeField] bool systemStart;
     PlayerCheckElement pce;
     [SerializeField] private float _maxSpeed;
     public float MaxSpeed => _maxSpeed;
@@ -42,7 +42,7 @@ public class CollectResourceBar : MonoBehaviour
             return;
         }
         Instance = this;
-        pce = GameObject.Find("Player").GetComponent<PlayerCheckElement>();
+        pce = GameObject.Find("Player").GetComponentInChildren<PlayerCheckElement>();
         _collectRangeBar = GetComponent<Image>();
         _collectRange = transform.Find("CorrectRange").GetComponent<RectTransform>();
         _keyImage = transform.Find("Key").GetComponent<Image>();
@@ -65,6 +65,7 @@ public class CollectResourceBar : MonoBehaviour
     {
         if(!isFinish)
         {
+            _collectRangeImg.color = _normaalRed;
             _collectRangeBar.enabled = true;
             _collectRangeImg.enabled = true;
             _keyImage.enabled = true;
@@ -98,12 +99,11 @@ public class CollectResourceBar : MonoBehaviour
     {
         _keyImage.sprite = _pressKeyImage;
         _collectRangeImg.color = _normaalRed;
-        if(IsOverlappingUI())
+        if(IsOverlappingUI() && systemStart)
         {
             _attackMotionEvent?.Invoke();
             _collectRangeImg.color = _sucessGreen;
             isMove = false;
-            pce.selectIb.InteractElement();
             _dCount--;
         }
         _maxCount--;
@@ -125,6 +125,8 @@ public class CollectResourceBar : MonoBehaviour
         pce.canInteraction = true;
         isMove = false;
         isFinish = true;
+        yield return null;
+        systemStart = false;
     }
 
     public bool IsOverlappingUI()

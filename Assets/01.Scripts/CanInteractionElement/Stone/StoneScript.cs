@@ -21,12 +21,10 @@ public class StoneScript : InteractionBase
 {
     [SerializeField] private StoneData[] _stoneDatas = new StoneData[2];
     private Dictionary<StoneType, StoneData> _stoneSelecter = new Dictionary<StoneType, StoneData>();
-
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     private void Start()
     {
         for (int i = 0; i < _stoneDatas.Length; i++)
@@ -43,10 +41,13 @@ public class StoneScript : InteractionBase
         _dropTable = _stoneSelecter[_type].stoneDropTable;
         _entitySO = _stoneSelecter[_type].stoneEntitySo;
     }
-
     public override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
     }
 
+    public override void Init()
+    {
+        onOutLine = false;
+    }
 }

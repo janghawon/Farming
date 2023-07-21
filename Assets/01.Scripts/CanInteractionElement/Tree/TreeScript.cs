@@ -22,12 +22,10 @@ public class TreeScript : InteractionBase
 {
     [SerializeField] private TreeData[] _treeDatas = new TreeData[3];
     private Dictionary<TreeType, TreeData> _treeSelecter = new Dictionary<TreeType, TreeData>();
-
     private void Awake()
     {
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
-
     private void Start()
     {
         for(int i = 0; i < _treeDatas.Length; i++)
@@ -53,10 +51,13 @@ public class TreeScript : InteractionBase
         _dropTable = _treeSelecter[_type].treeDropTable;
         _entitySO = _treeSelecter[_type].treeEntitySo;
     }
-
     public override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
     }
 
+    public override void Init()
+    {
+        onOutLine = false;
+    }
 }
