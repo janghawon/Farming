@@ -20,7 +20,7 @@ public class PlayerCheckElement : MonoBehaviour
     public void ReactionIB()
     {
         InteractionBase ib = col.GetComponent<InteractionBase>();
-        ib.InteractElement();
+        ib?.InteractElement();
     }
 
     public void SelectInteraction()
