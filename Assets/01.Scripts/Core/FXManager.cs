@@ -30,6 +30,7 @@ public class FXManager : MonoBehaviour
         for(int i = 0; i < count; i++)
         {
             randomPos = Random.insideUnitCircle * range;
+            _fx = PoolManager.Instance.Pop(_fxPrefabs[(int)type].name).gameObject;
             _fx = Instantiate(_fxPrefabs[(int)type]);
 
             _fx.transform.position = pos + randomPos;
