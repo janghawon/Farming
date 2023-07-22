@@ -108,14 +108,6 @@ public class CollectResourceBar : MonoBehaviour
         }
         _maxCount--;
 
-        if(_maxCount == 0)
-        {
-            StartCoroutine(TurmCo());
-            if (_dCount == 0)
-            {
-                pce.selectIb.DropItem();
-            }
-        }
     }
 
     IEnumerator TurmCo()
@@ -137,6 +129,18 @@ public class CollectResourceBar : MonoBehaviour
             return true;
         }
         return false;
+    }
+
+    public void Call()
+    {
+        if (_maxCount == 0)
+        {
+            StartCoroutine(TurmCo());
+            if (_dCount == 0)
+            {
+                pce.selectIb.DropItem();
+            }
+        }
     }
 
     private void Update()

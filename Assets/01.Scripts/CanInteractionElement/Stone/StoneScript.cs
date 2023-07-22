@@ -44,6 +44,8 @@ public class StoneScript : InteractionBase
     public override void InteractElement()
     {
         transform.DOShakePosition(0.08f, 0.2f, 5);
+        CollectResourceBar.Instance.Call();
+        FXManager.Instance.SetFx(FXType.smoke, transform.position, 1, 0.2f);
     }
 
     public override void Init()
