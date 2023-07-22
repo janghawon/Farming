@@ -107,7 +107,6 @@ public class CollectResourceBar : MonoBehaviour
             _dCount--;
         }
         _maxCount--;
-
     }
 
     IEnumerator TurmCo()

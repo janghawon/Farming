@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97d3662ede98fbd45994ce78ec1d0c45, type: 3}
   m_Name: SmallStone
   m_EditorClassIdentifier: 
-  Range_Speed: {x: 90, y: 9}
+  Range_Speed: {x: 90, y: 12}
   DestroyCount: 2
