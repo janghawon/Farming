@@ -19,7 +19,7 @@ public class PlayerCheckElement : MonoBehaviour
 
     public void ReactionIB()
     {
-        InteractionBase ib = col.GetComponent<InteractionBase>();
+        InteractionBase ib = col?.GetComponent<InteractionBase>();
         ib?.InteractElement();
     }
 
