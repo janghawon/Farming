@@ -41,6 +41,7 @@ public class PlayerCheckElement : MonoBehaviour
             if(col.TryGetComponent<InteractionBase>(out InteractionBase ib))
             {
                 selectIb = ib;
+                UIManager.Instance.SetGuideText("plz press E", ib.transform.position);
                 ib.onOutLine = false;
             }
         }
