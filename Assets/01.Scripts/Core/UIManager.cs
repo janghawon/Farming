@@ -28,11 +28,19 @@ public class UIManager : MonoBehaviour
         _canvasRect = _canvas.GetComponent<RectTransform>();
         _guideTxtRect = _guideTxt.GetComponent<RectTransform>();
         _worldCam = _canvas.worldCamera;
+
+        _guideTxt.enabled = false;
     }
 
     Vector3 setPos;
-    public void SetGuideText(string txtInfo, Vector2 pos)
+    public void SetGuideText(string txtInfo, Vector2 pos, bool active)
     {
+        if(!active)
+        {
+            _guideTxt.enabled = false;
+            return;
+        }
+        _guideTxt.enabled = true;
         _guideTxt.SetText(txtInfo);
         setPos = GameManager.Instance.MainCam.WorldToScreenPoint(pos + new Vector2(0, 2));
         var localPos = new Vector2(0, 20);
