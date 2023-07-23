@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class PlayerAnimation : MonoBehaviour
 {
+    SpriteRenderer _spriteRenderer;
     Animator _animator;
+    [SerializeField] private Sprite _failSprite;
     [SerializeField] private AnimatorOverrideController _controller;
     [SerializeField] private AnimationClip[] clips;
 
@@ -14,6 +16,7 @@ public class PlayerAnimation : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     private void AnimationSet(int idle, int walk, int atk)
@@ -21,6 +24,17 @@ public class PlayerAnimation : MonoBehaviour
         _controller["Front_Idle"] = clips[idle];
         _controller["Front_Walk"] = clips[walk];
         _controller["Front_Attack"] = clips[atk];
+    }
+
+    public void PFail()
+    {
+        _animator.enabled = false;
+        _spriteRenderer.sprite = _failSprite;
+    }
+
+    public void SetAnimation()
+    {
+
     }
 
     public void PAttack()

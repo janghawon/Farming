@@ -42,6 +42,7 @@ public class UIManager : MonoBehaviour
         }
         _guideTxt.enabled = true;
         _guideTxt.SetText(txtInfo);
+
         setPos = GameManager.Instance.MainCam.WorldToScreenPoint(pos + new Vector2(0, 2));
         var localPos = new Vector2(0, 20);
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_canvasRect, setPos, _worldCam, out localPos);

@@ -32,6 +32,8 @@ public class CollectResourceBar : MonoBehaviour
     public bool isFinish;
 
     [SerializeField] private UnityEvent _attackMotionEvent;
+    [SerializeField] private UnityEvent _failMotionEvent;
+    [SerializeField] private UnityEvent _setAnimation;
     [SerializeField] private UnityEvent _endEvent;
 
     private void Awake()
@@ -101,11 +103,12 @@ public class CollectResourceBar : MonoBehaviour
         _collectRangeImg.color = _normaalRed;
         if(IsOverlappingUI() && systemStart)
         {
-            _attackMotionEvent?.Invoke();
+
             _collectRangeImg.color = _sucessGreen;
             isMove = false;
             _dCount--;
         }
+        _attackMotionEvent?.Invoke();
         _maxCount--;
     }
 
