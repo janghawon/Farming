@@ -32,11 +32,6 @@ public class PlayerAnimation : MonoBehaviour
         _spriteRenderer.sprite = _failSprite;
     }
 
-    public void SetAnimation()
-    {
-
-    }
-
     public void PAttack()
     {
         _animator.SetBool(_atkHash, true);
@@ -45,12 +40,14 @@ public class PlayerAnimation : MonoBehaviour
 
     IEnumerator Turm()
     {
-        yield return null;
+        Debug.Log($"{clips[2]}, {clips[2].length}");
+        yield return new WaitForSeconds(clips[2].length - 0.7f);
         _animator.SetBool(_atkHash, false);
     }
 
     public void PAnimation(Vector3 dir, PlayerDirection _pDir)
     {
+        _spriteRenderer.flipX = false;
         switch (_pDir)
         {
             case PlayerDirection.front:
@@ -63,7 +60,8 @@ public class PlayerAnimation : MonoBehaviour
                 AnimationSet(6, 7, 8);
                 break;
             case PlayerDirection.left:
-                AnimationSet(9, 10, 11);
+                _spriteRenderer.flipX = true;
+                AnimationSet(6, 7, 8);
                 break;
         }
         if(dir.sqrMagnitude != 0)

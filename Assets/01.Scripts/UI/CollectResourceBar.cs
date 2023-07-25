@@ -103,12 +103,15 @@ public class CollectResourceBar : MonoBehaviour
         _collectRangeImg.color = _normaalRed;
         if(IsOverlappingUI() && systemStart)
         {
-
+            _attackMotionEvent?.Invoke();
             _collectRangeImg.color = _sucessGreen;
             isMove = false;
             _dCount--;
         }
-        _attackMotionEvent?.Invoke();
+        else
+        {
+            _failMotionEvent?.Invoke();
+        }
         _maxCount--;
     }
 
@@ -162,6 +165,7 @@ public class CollectResourceBar : MonoBehaviour
         if(!isFinish)
         {
             yield return new WaitForSeconds(1);
+            _setAnimation?.Invoke();
             systemStart = true;
             isMove = true;
             _collectRangeImg.color = _normaalRed;
