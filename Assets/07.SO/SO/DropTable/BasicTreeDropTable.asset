@@ -13,5 +13,6 @@ MonoBehaviour:
   m_Name: BasicTreeDropTable
   m_EditorClassIdentifier: 
   DropItemList:
-  - DropItemObj: {fileID: 0}
-    percent: 0
+  - DropItemObj: {fileID: 4149061192782211510, guid: 6ec4c15cbfad9f749aaa970fabbc3910, type: 3}
+    percent: 100
+    count: 2

@@ -5,7 +5,7 @@ using UnityEngine;
 public abstract class InteractionBase : PoolableMono
 {
     protected EntitySO _entitySO;
-    protected DropTable _dropTable;
+    [SerializeField] protected DropTable _dropTable;
     public bool onOutLine;
     [SerializeField] private Material _outLineMat;
     [SerializeField] private Material _litMat;
@@ -54,12 +54,13 @@ public abstract class InteractionBase : PoolableMono
             randomV = Random.Range(1, 101);
             if(_dropTable.DropItemList[i].percent >= randomV)
             {
-                for(int j = 0; j < _dropTable.DropItemList[i].count; i++)
+                Debug.Log( _dropTable.DropItemList[i].count);
+                for(int j = 0; j < _dropTable.DropItemList[i].count; j++)
                 {
                     dropItem = PoolManager.Instance.Pop(_dropTable.DropItemList[i].DropItemObj.name) as ItemBase;
                     dropItem.name = _dropTable.DropItemList[i].DropItemObj.name;
-
-                    randomPos = Random.insideUnitCircle * 2;
+                    dropItem.transform.position = transform.position;
+                    randomPos = (Vector2)transform.position + Random.insideUnitCircle * 2;
                     dropItem.PupItem(randomPos);
                 }
             }
