@@ -42,10 +42,29 @@ public abstract class InteractionBase : PoolableMono
         SetAndStart(_entitySO.Range_Speed.x, _entitySO.Range_Speed.y, _entitySO.DestroyCount, _entitySO.DestroyCount);
     }
 
+    ItemBase dropItem;
+    int randomV = 0;
+    Vector2 randomPos;
     public virtual void DropItem()
     {
         FXManager.Instance.SetFx(FXType.smoke, transform.position + new Vector3(0, 0.5f, 0), 2, 1);
-        //아이템 떨구기
+
+        for(int i = 0; i < _dropTable.DropItemList.Count; i++)
+        {
+            randomV = Random.Range(1, 101);
+            if(_dropTable.DropItemList[i].percent >= randomV)
+            {
+                for(int j = 0; j < _dropTable.DropItemList[i].count; i++)
+                {
+                    dropItem = PoolManager.Instance.Pop(_dropTable.DropItemList[i].DropItemObj.name) as ItemBase;
+                    dropItem.name = _dropTable.DropItemList[i].DropItemObj.name;
+
+                    randomPos = Random.insideUnitCircle * 2;
+                    dropItem.PupItem(randomPos);
+                }
+            }
+        }    
+
         PoolManager.Instance.Push(this);
     }
 }

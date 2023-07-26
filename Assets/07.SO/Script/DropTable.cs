@@ -7,6 +7,7 @@ public class DropItem
 {
     public GameObject DropItemObj;
     public float percent;
+    public int count;
 }
 
 [CreateAssetMenu(menuName = "ScriptableObject/DropTable", fileName = "New DropTable")]
