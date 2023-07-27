@@ -12,4 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b31e7b8ac33c0148bb212c7c86ad1f2, type: 3}
   m_Name: BigStoneDropTable
   m_EditorClassIdentifier: 
-  DropItemList: []
+  DropItemList:
+  - DropItemObj: {fileID: 259174883836348917, guid: 6e8c75bba04ca574593ae6c64adc65f7, type: 3}
+    percent: 40
+    count: 1
+  - DropItemObj: {fileID: 2859655971192263715, guid: c794a68138404be4a99cce697e9223bc, type: 3}
+    percent: 100
+    count: 2

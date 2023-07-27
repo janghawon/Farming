@@ -13,12 +13,13 @@ public enum PlayerDirection
 
 public class PlayerInput : MonoBehaviour
 {
-    BoxCollider2D _col;
+    [SerializeField] private BoxCollider2D _col;
     [SerializeField] private UnityEvent<Vector3> _moveEvent;
     [SerializeField] private UnityEvent<Vector3, PlayerDirection> _animationEvent;
     [SerializeField] private UnityEvent _attackEvent;
     Vector3 dir;
     [SerializeField] private PlayerDirection _pDir;
+    private PlayerDirection _beforePdir;
     [SerializeField] private LayerMask _layerMask;
 
     private void Awake()
@@ -29,14 +30,18 @@ public class PlayerInput : MonoBehaviour
 
     private void ColliderOffset(PlayerDirection _p)
     {
-        if(_p == PlayerDirection.left)
+        if (_beforePdir == _p)
+            return;
+        
+        _col.offset = new Vector2(0.035f, -0.8f);
+        _col.size = new Vector2(1, 0.2f);
+
+        if (_p == PlayerDirection.left || _p == PlayerDirection.right)
         {
-            _col.offset = new Vector2(0.37f, -0.6f);
+            _col.offset = new Vector2(0.38f, -0.85f);
+            _col.size = new Vector2(1, 0.2f);
         }
-        else
-        {
-            _col.offset = new Vector2(-0.38f, -0.6f);
-        }    
+         
     }
 
     private void SetPDir(Vector3 _dir)
