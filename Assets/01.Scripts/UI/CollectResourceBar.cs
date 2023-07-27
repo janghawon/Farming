@@ -67,6 +67,7 @@ public class CollectResourceBar : MonoBehaviour
     {
         if(!isFinish)
         {
+            UIManager.Instance.canTexting = false;
             _collectRangeImg.color = _normaalRed;
             _collectRangeBar.enabled = true;
             _collectRangeImg.enabled = true;
@@ -117,12 +118,11 @@ public class CollectResourceBar : MonoBehaviour
 
     IEnumerator TurmCo()
     {
-        yield return new WaitForSeconds(1);
+        isFinish = true;
         _endEvent?.Invoke();
         pce.canInteraction = true;
         isMove = false;
-        isFinish = true;
-        yield return null;
+        yield return new WaitForSeconds(1);
         systemStart = false;
     }
 
@@ -140,7 +140,7 @@ public class CollectResourceBar : MonoBehaviour
     {
         if (_maxCount == 0)
         {
-            StartCoroutine(TurmCo());
+            StartCoroutine( TurmCo());
             if (_dCount == 0)
             {
                 pce.selectIb.DropItem();

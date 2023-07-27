@@ -40,7 +40,6 @@ public class PlayerAnimation : MonoBehaviour
 
     IEnumerator Turm()
     {
-        Debug.Log($"{clips[2]}, {clips[2].length}");
         yield return new WaitForSeconds(clips[2].length - 0.7f);
         _animator.SetBool(_atkHash, false);
     }

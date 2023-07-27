@@ -54,7 +54,6 @@ public abstract class InteractionBase : PoolableMono
             randomV = Random.Range(1, 101);
             if(_dropTable.DropItemList[i].percent >= randomV)
             {
-                Debug.Log( _dropTable.DropItemList[i].count);
                 for(int j = 0; j < _dropTable.DropItemList[i].count; j++)
                 {
                     dropItem = PoolManager.Instance.Pop(_dropTable.DropItemList[i].DropItemObj.name) as ItemBase;
@@ -64,8 +63,8 @@ public abstract class InteractionBase : PoolableMono
                     dropItem.PupItem(randomPos);
                 }
             }
-        }    
-
+        }
+        UIManager.Instance.canTexting = true;
         PoolManager.Instance.Push(this);
     }
 }

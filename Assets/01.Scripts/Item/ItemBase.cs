@@ -18,7 +18,7 @@ public class ItemBase : PoolableMono
         pos = targetPos;
         isPup = true;
 
-        transform.DOMove(pos, 1f);
+        transform.DOMove(pos, 1f).SetEase(Ease.OutBounce);
     }
 
     private void Update()

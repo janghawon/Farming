@@ -13,6 +13,8 @@ public class UIManager : MonoBehaviour
     private RectTransform _canvasRect;
     private Camera _worldCam;
 
+    public bool canTexting;
+
     private void Awake()
     {
         if(Instance != null)
@@ -21,6 +23,7 @@ public class UIManager : MonoBehaviour
             return;
         }
         Instance = this;
+        canTexting = true;
     }
 
     private void Start()
@@ -35,7 +38,7 @@ public class UIManager : MonoBehaviour
     Vector3 setPos;
     public void SetGuideText(string txtInfo, Vector2 pos, bool active)
     {
-        if(!active)
+        if(!active || !canTexting)
         {
             _guideTxt.enabled = false;
             return;
