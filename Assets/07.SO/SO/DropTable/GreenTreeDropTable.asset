@@ -12,3 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7b31e7b8ac33c0148bb212c7c86ad1f2, type: 3}
   m_Name: GreenTreeDropTable
   m_EditorClassIdentifier: 
+  DropItemList:
+  - DropItemObj: {fileID: 4149061192782211510, guid: 6ec4c15cbfad9f749aaa970fabbc3910, type: 3}
+    percent: 100
+    count: 2
+  - DropItemObj: {fileID: 4474694152399931917, guid: a14622b968751ac4994df4a72d52d4d8, type: 3}
+    percent: 40
+    count: 1
