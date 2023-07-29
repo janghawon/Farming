@@ -6,13 +6,11 @@ using TMPro;
 
 public class ItemElement
 {
-    public Sprite thisSprite;
     public int thisCount;
     public int thisNum;
 
-    public ItemElement(Sprite sp, int count, int num)
+    public ItemElement(int count, int num)
     {
-        thisSprite = sp;
         thisCount = count;
         thisNum = num;
     }
@@ -23,19 +21,11 @@ public class PlayerInventory : MonoBehaviour
     [SerializeField] private Image _Inventory;
     [SerializeField] private Transform _inventoryContent;
     [SerializeField] private Transform[] _iElementsGroup = new Transform[12];
-    [SerializeField] private TextMeshProUGUI[] _countTexts;
-    private Dictionary<int, ItemElement> _itemTable;
+    [SerializeField] private TextMeshProUGUI[] _countTexts = new TextMeshProUGUI[12];
+    private Dictionary<int, ItemElement> _itemTable = new Dictionary<int, ItemElement>();
 
     Image texImage;
     int num;
-
-    private void Awake()
-    {
-        for(int i = 0; i < _iElementsGroup.Length; i++)
-        {
-            _iElementsGroup[i] = _inventoryContent.Find($"Slot_{i + 1}");
-        }
-    }
 
     private void Start()
     {
@@ -51,12 +41,13 @@ public class PlayerInventory : MonoBehaviour
             texImage.enabled = active;
             texImage = (Image)_iElementsGroup[i].Find("TexImage").GetComponent("Image");
             texImage.enabled = active;
+            _countTexts[i].enabled = active;
         }
     }
 
     public void GetItem(int idx, Sprite sp)
     {
-        if(_itemTable[idx] != null) // 이미 있을 때
+        if(_itemTable.ContainsKey(idx)) // 이미 있을 때
         {
             _itemTable[idx].thisCount++;
             if(_itemTable[idx].thisCount > 99)
@@ -64,7 +55,7 @@ public class PlayerInventory : MonoBehaviour
                 _countTexts[_itemTable[idx].thisNum].text = "99+";
                 return;
             }
-            _countTexts[_itemTable[idx].thisNum].text = _itemTable[idx].thisCount.ToString();
+            
         }
         else // 새로운 아이템일 때
         {
@@ -73,12 +64,14 @@ public class PlayerInventory : MonoBehaviour
                 texImage = (Image)_iElementsGroup[i].Find("TexImage").GetComponent("Image");
                 if (texImage.sprite == null)
                 {
-                    num = i + 1;
+                    Debug.Log(texImage.sprite);
+                    num = i;
                     break;
                 }
             }
-            _itemTable[idx] = new ItemElement(sp, 1, num);
+            _itemTable.Add(idx, new ItemElement(1, num));
             texImage.sprite = sp;
         }
+        _countTexts[_itemTable[idx].thisNum].text = _itemTable[idx].thisCount.ToString();
     }
 }

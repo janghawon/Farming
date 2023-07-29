@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1459008179825634342}
   - component: {fileID: 4746431889115377395}
-  - component: {fileID: 2458844139201645966}
   - component: {fileID: -1951622732891489400}
   m_Layer: 0
   m_Name: RedCrab
@@ -86,18 +85,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2458844139201645966
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2859655971192263715}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8283918cc77a5c74e9e360f305b4e77d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-1951622732891489400
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -110,3 +97,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8283918cc77a5c74e9e360f305b4e77d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _itemSO: {fileID: 11400000, guid: b369573b0db3ce74aba97f0cbdc2eaf4, type: 2}

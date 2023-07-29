@@ -6,8 +6,10 @@ using DG.Tweening;
 
 public class ItemBase : PoolableMono
 {
+    [SerializeField] private ItemSO _itemSO;
     float _moveSpeed = 4f;
     Transform player;
+    PlayerInventory _pi;
     protected bool isPup;
     protected bool isMagnetic;
 
@@ -17,6 +19,7 @@ public class ItemBase : PoolableMono
     private void Start()
     {
         player = GameManager.Instance.Player;
+        _pi = player.GetComponent<PlayerInventory>();
     }
 
     public void PupItem(Vector2 targetPos)
@@ -47,6 +50,7 @@ public class ItemBase : PoolableMono
 
             if(Vector2.Distance(player.position, transform.position) < 0.15f)
             {
+                _pi.GetItem(_itemSO.ItemIDX, _itemSO.ItemSprite);
                 PoolManager.Instance.Push(this);
             }
         }

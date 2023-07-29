@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df35823acaaf10b46929a067470107f0, type: 3}
+  m_Name: 2_RedCrab
+  m_EditorClassIdentifier: 
+  ItemSprite: {fileID: 233934315, guid: 3eac9665080b8354fa702d250e148c0f, type: 3}
+  ItemName: "\uBD89\uC740 \uAF43\uAC8C"
+  ItemIDX: 2
