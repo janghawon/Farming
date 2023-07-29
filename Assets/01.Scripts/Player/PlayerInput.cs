@@ -17,17 +17,20 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private UnityEvent<Vector3> _moveEvent;
     [SerializeField] private UnityEvent<Vector3, PlayerDirection> _animationEvent;
     [SerializeField] private UnityEvent _attackEvent;
+    [SerializeField] private UnityEvent<bool> _invenEvent;
     Vector3 dir;
     [SerializeField] private PlayerDirection _pDir;
     private PlayerDirection _beforePdir;
     [SerializeField] private LayerMask _layerMask;
 
+    bool isInvenActive;
+
     private void Awake()
     {
         _col = GetComponent<BoxCollider2D>();
         _pDir = PlayerDirection.front;
+        isInvenActive = false;
     }
-
     private void ColliderOffset(PlayerDirection _p)
     {
         if (_beforePdir == _p)
@@ -43,7 +46,6 @@ public class PlayerInput : MonoBehaviour
         }
          
     }
-
     private void SetPDir(Vector3 _dir)
     {
         if(_dir.x > 0)
@@ -63,7 +65,6 @@ public class PlayerInput : MonoBehaviour
             _pDir = PlayerDirection.front;
         }
     }
-
     private void CheckWhere(Vector2 dir)
     {
         if (Mathf.Abs(dir.x) > Mathf.Abs(dir.y))
@@ -93,7 +94,6 @@ public class PlayerInput : MonoBehaviour
             _pDir = PlayerDirection.back;
         }
     }
-
     private void GetAttackKey()
     {
         if(Input.GetKeyDown(KeyCode.E))
@@ -107,6 +107,14 @@ public class PlayerInput : MonoBehaviour
             }
         }
     }
+    private void GetInvenKey()
+    {
+        if(Input.GetKeyDown(KeyCode.I))
+        {
+            _invenEvent?.Invoke(!isInvenActive);
+            isInvenActive = !isInvenActive;
+        }
+    }
 
     private void Update()
     {
@@ -117,6 +125,7 @@ public class PlayerInput : MonoBehaviour
         _animationEvent?.Invoke(dir, _pDir);
         Detection();
         GetAttackKey();
+        GetInvenKey();
     }
 
     private void Detection()
