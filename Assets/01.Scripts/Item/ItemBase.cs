@@ -6,11 +6,18 @@ using DG.Tweening;
 
 public class ItemBase : PoolableMono
 {
+    float _moveSpeed = 4f;
+    Transform player;
     protected bool isPup;
     protected bool isMagnetic;
 
     Vector2 currentPos;
     Vector2 pos;
+
+    private void Start()
+    {
+        player = GameManager.Instance.Player;
+    }
 
     public void PupItem(Vector2 targetPos)
     {
@@ -35,7 +42,13 @@ public class ItemBase : PoolableMono
     {
         if(isMagnetic)
         {
+            currentPos = player.position - transform.position;
+            transform.Translate(currentPos * _moveSpeed * Time.deltaTime, Space.World);
 
+            if(Vector2.Distance(player.position, transform.position) < 0.15f)
+            {
+                PoolManager.Instance.Push(this);
+            }
         }
     }
 
