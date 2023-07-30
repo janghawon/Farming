@@ -118,10 +118,7 @@ public class PlayerInput : MonoBehaviour
     }
     private void GetFishingKey()
     {
-        if(Input.GetMouseButton(0))
-        {
-            _fishingEvent?.Invoke(_pDir);
-        }
+        _fishingEvent?.Invoke(_pDir);
     }
 
     private void Update()

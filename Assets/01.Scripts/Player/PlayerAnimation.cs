@@ -20,6 +20,12 @@ public class PlayerAnimation : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
+    public void UnFIshing(AnimationClip clip)
+    {
+        _controller["Back_Fishing_Un"] = clip;
+        _animator.SetBool(_fishingHash, false);
+    }
+
     public void Charging(Sprite sp)
     {
         _animator.enabled = false;
