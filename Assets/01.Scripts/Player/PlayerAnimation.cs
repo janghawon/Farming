@@ -12,11 +12,26 @@ public class PlayerAnimation : MonoBehaviour
 
     private readonly int _walkHash = Animator.StringToHash("isWalk");
     private readonly int _atkHash = Animator.StringToHash("isAttack");
+    private readonly int _fishingHash = Animator.StringToHash("iSfishing");
 
     private void Awake()
     {
         _animator = GetComponent<Animator>();
         _spriteRenderer = GetComponent<SpriteRenderer>();
+    }
+
+    public void Charging(Sprite sp)
+    {
+        _animator.enabled = false;
+        _spriteRenderer.sprite = sp;
+    }    
+
+    public void FishingStart(AnimationClip clip)
+    {
+        _animator.enabled = true;
+        Debug.Log(_animator.enabled);
+        _controller["Back_Fishing_Burst"] = clip;
+        _animator.SetBool(_fishingHash, true);
     }
 
     private void AnimationSet(int idle, int walk, int atk)

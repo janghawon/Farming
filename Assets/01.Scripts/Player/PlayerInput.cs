@@ -18,6 +18,7 @@ public class PlayerInput : MonoBehaviour
     [SerializeField] private UnityEvent<Vector3, PlayerDirection> _animationEvent;
     [SerializeField] private UnityEvent _attackEvent;
     [SerializeField] private UnityEvent<bool> _invenEvent;
+    [SerializeField] private UnityEvent<PlayerDirection> _fishingEvent;
     Vector3 dir;
     [SerializeField] private PlayerDirection _pDir;
     private PlayerDirection _beforePdir;
@@ -115,6 +116,13 @@ public class PlayerInput : MonoBehaviour
             isInvenActive = !isInvenActive;
         }
     }
+    private void GetFishingKey()
+    {
+        if(Input.GetMouseButton(0))
+        {
+            _fishingEvent?.Invoke(_pDir);
+        }
+    }
 
     private void Update()
     {
@@ -126,6 +134,7 @@ public class PlayerInput : MonoBehaviour
         Detection();
         GetAttackKey();
         GetInvenKey();
+        GetFishingKey();
     }
 
     private void Detection()
