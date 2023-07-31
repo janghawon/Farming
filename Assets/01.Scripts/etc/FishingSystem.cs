@@ -9,41 +9,41 @@ public class FishingSystem : MonoBehaviour
     [SerializeField] [Range(1, 10)] private float _minWatingTime;
     [SerializeField] [Range(2, 11)] private float _maxWatingTime;
 
-    [SerializeField] private float _completeValue;
-    private float _currentValue;
-    [SerializeField] [Range(30, 50)] private float _minComValue;
-    [SerializeField] [Range(51, 80)] private float _maxComValue;
+    [SerializeField] private int _completeValue;
+    [SerializeField] private int _currentValue = -1;
+    [SerializeField] [Range(10, 20)] private int _minComValue;
+    [SerializeField] [Range(21, 40)] private int _maxComValue;
 
-    public bool isFishing { get; set; }
-    private bool isFIshingStart;
+    public bool isFishing;
+    public bool isFIshingStart { get; set; }
 
     [SerializeField] private DropTable _dropTable;
-    [SerializeField] private UnityEvent _fishingStartEvent;
     [SerializeField] private UnityEvent _fishingEndEvent;
 
     public void FishingStart()
     {
         _waitingTime = Random.Range(_minWatingTime, _maxWatingTime);
         _completeValue = Random.Range(_minComValue, _maxComValue);
-        _fishingStartEvent?.Invoke();
     }
 
     private void Update()
     {
         if(isFishing)
         {
-            if(Time.frameCount % 5 == 0)
+            if(Time.frameCount % 20 == 0)
             {
-                _completeValue--;
+                _currentValue--;
             }
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                _completeValue++;
+                _currentValue++;
             }
         }
         if(_currentValue == _completeValue)
         {
             _fishingEndEvent?.Invoke();
+            isFishing = false;
+            Debug.Log("≥°");
         }
         FishingLogic();
     }
@@ -55,12 +55,15 @@ public class FishingSystem : MonoBehaviour
             return;
         isFIshingStart = false;
         #endregion
-
         StartCoroutine(WaitingFishing());
     }
 
     IEnumerator WaitingFishing()
     {
         yield return new WaitForSeconds(_waitingTime);
+        Debug.Log("¿‚»˚!!");
+        isFishing = true;
     }
+
+
 }

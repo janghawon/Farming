@@ -12,6 +12,7 @@ public class PlayerFishing : MonoBehaviour
 
     [SerializeField] private UnityEvent<Sprite> _chargingEvent;
     [SerializeField] private UnityEvent<AnimationClip> _burstEvent;
+    [SerializeField] private UnityEvent _fishingStartEvent;
     [SerializeField] private UnityEvent<AnimationClip> _unBurstEvent;
 
     [SerializeField] private int chargingValue;
@@ -93,6 +94,7 @@ public class PlayerFishing : MonoBehaviour
         {
             canCharging = false;
             _burstEvent?.Invoke(_burstAnimation);
+            _fishingStartEvent?.Invoke();
         }
     }
 }
