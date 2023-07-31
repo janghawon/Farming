@@ -6,7 +6,6 @@ using UnityEngine.Events;
 
 public class CollectResourceBar : MonoBehaviour
 {
-    public static CollectResourceBar Instance;
     [SerializeField] bool systemStart;
     PlayerCheckElement pce;
     [SerializeField] private float _maxSpeed;
@@ -38,12 +37,6 @@ public class CollectResourceBar : MonoBehaviour
 
     private void Awake()
     {
-        if(Instance != null)
-        {
-            Debug.LogError("!!!!!!");
-            return;
-        }
-        Instance = this;
         pce = GameObject.Find("Player").GetComponentInChildren<PlayerCheckElement>();
         _collectRangeBar = GetComponent<Image>();
         _collectRange = transform.Find("CorrectRange").GetComponent<RectTransform>();

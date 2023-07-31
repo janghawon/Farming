@@ -10,6 +10,14 @@ public abstract class InteractionBase : PoolableMono
     [SerializeField] private Material _outLineMat;
     [SerializeField] private Material _litMat;
     protected SpriteRenderer _spriteRenderer;
+    protected CollectResourceBar _colResourceBar;
+
+    private void Awake()
+    {
+        _spriteRenderer = GetComponent<SpriteRenderer>();
+        _colResourceBar = (CollectResourceBar)GameObject.Find("UICANVAS/CollectResourcebar").GetComponent("CollectResourceBar");
+    }
+
     public abstract void InteractElement();
 
     private void Update()
@@ -28,17 +36,17 @@ public abstract class InteractionBase : PoolableMono
     }
     public void SelectInteraction()
     {
-        CollectResourceBar.Instance.isFinish = false;
+        _colResourceBar.isFinish = false;
 
         Vector3 screenPos = Camera.main.WorldToScreenPoint(this.transform.position + new Vector3(0, 1.5f, 0));
         Vector2 canPos;
         RectTransform _rect = GameObject.Find("UICANVAS").GetComponent<RectTransform>();
         RectTransformUtility.ScreenPointToLocalPointInRectangle(_rect, screenPos, null, out canPos);
-        _rect = CollectResourceBar.Instance.gameObject.GetComponent<RectTransform>();
+        _rect = _colResourceBar.GetComponent<RectTransform>();
 
         _rect.localPosition = canPos;
 
-        CollectResourceBar.Instance.
+        _colResourceBar.
         SetAndStart(_entitySO.Range_Speed.x, _entitySO.Range_Speed.y, _entitySO.DestroyCount, _entitySO.DestroyCount);
     }
 

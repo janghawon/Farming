@@ -43,7 +43,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         MainCam = Camera.main;
-
+        Cursor.visible = false;
         CreatePoolManager();
     }
 
