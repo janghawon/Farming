@@ -38,12 +38,12 @@ public class FishingSystem : MonoBehaviour
             {
                 _currentValue++;
             }
-        }
-        if(_currentValue == _completeValue)
-        {
-            _fishingEndEvent?.Invoke();
-            isFishing = false;
-            Debug.Log("≥°");
+            if (_currentValue == _completeValue)
+            {
+                _fishingEndEvent?.Invoke();
+                isFishing = false;
+                Debug.Log("≥°");
+            }
         }
         FishingLogic();
     }
@@ -64,6 +64,4 @@ public class FishingSystem : MonoBehaviour
         Debug.Log("¿‚»˚!!");
         isFishing = true;
     }
-
-
 }

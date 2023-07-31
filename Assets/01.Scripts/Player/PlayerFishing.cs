@@ -14,6 +14,7 @@ public class PlayerFishing : MonoBehaviour
     [SerializeField] private UnityEvent<AnimationClip> _burstEvent;
     [SerializeField] private UnityEvent _fishingStartEvent;
     [SerializeField] private UnityEvent<AnimationClip> _unBurstEvent;
+    [SerializeField] private UnityEvent<PlayerDirection, float> _dummyEvent;
 
     [SerializeField] private int chargingValue;
     private int num;
@@ -90,10 +91,11 @@ public class PlayerFishing : MonoBehaviour
             SetChargingTexture(pdir);
             chargingValue++;
         }
-        if(Input.GetMouseButtonUp(0))
+        if(Input.GetMouseButtonUp(0) && canCharging)
         {
             canCharging = false;
             _burstEvent?.Invoke(_burstAnimation);
+            _dummyEvent?.Invoke(pdir, chargingValue * 0.01f);
             _fishingStartEvent?.Invoke();
         }
     }

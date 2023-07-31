@@ -35,7 +35,6 @@ public class PlayerAnimation : MonoBehaviour
     public void FishingStart(AnimationClip clip)
     {
         _animator.enabled = true;
-        Debug.Log(_animator.enabled);
         _controller["Back_Fishing_Burst"] = clip;
         _animator.SetBool(_fishingHash, true);
     }
