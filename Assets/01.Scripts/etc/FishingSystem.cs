@@ -5,7 +5,9 @@ using UnityEngine.Events;
 
 public class FishingSystem : MonoBehaviour
 {
+    Transform _player;
     [SerializeField] private Transform _dummyTrans;
+    FishingDummy _fishingDum;
     Vector2 _startPos;
     private float _waitingTime;
     [SerializeField] [Range(1, 10)] private float _minWatingTime;
@@ -22,11 +24,21 @@ public class FishingSystem : MonoBehaviour
     [SerializeField] private DropTable _dropTable;
     [SerializeField] private UnityEvent _fishingEndEvent;
 
+    private void Start()
+    {
+        _player = GameManager.Instance.Player;
+        _fishingDum = _dummyTrans.GetComponent<FishingDummy>();
+    }
+
     public void FishingStart()
     {
         _waitingTime = Random.Range(_minWatingTime, _maxWatingTime);
         _completeValue = Random.Range(_minComValue, _maxComValue);
         _startPos = _dummyTrans.position;
+
+        dir = (Vector2)_player.position - _startPos.normalized;
+        dir /= _completeValue;
+        _fishingDum.isMoving = true;
     }
 
     private void Update()
@@ -35,26 +47,28 @@ public class FishingSystem : MonoBehaviour
         {
             if(Time.frameCount % 20 == 0)
             {
-                _currentValue--;
+                Shaking(-1);
             }
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                _currentValue++;
+                Shaking(1);
             }
-            if (_currentValue == _completeValue)
+            if (Vector2.Distance(_player.position, _dummyTrans.position) < 0.5f)
             {
                 _fishingEndEvent?.Invoke();
                 isFishing = false;
+                _fishingDum.isMoving = false;
                 Debug.Log("³¡");
             }
+            
         }
         FishingLogic();
-        Shaking();
+        
     }
-
-    private void Shaking()
+    Vector3 dir;
+    private void Shaking(int val)
     {
-
+        _dummyTrans.position += dir * val;
     }
 
     private void FishingLogic()

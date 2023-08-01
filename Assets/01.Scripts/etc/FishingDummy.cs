@@ -27,10 +27,12 @@ public class FishingDummy : MonoBehaviour
         _rigid.bodyType = RigidbodyType2D.Kinematic;
         _cam = Camera.main;
         _player = GameManager.Instance.Player;
+        _lineRenderer.enabled = false;
     }
 
     public void SetPos()
     {
+        _lineRenderer.enabled = false;
         _sr.enabled = false;
         transform.localPosition = new Vector3(0.4f, 0.65f);
         _cam.transform.parent = _player;
@@ -42,7 +44,7 @@ public class FishingDummy : MonoBehaviour
         {
             case PlayerDirection.back:
                 dirType = Vector2.up;
-                _fishingPos.localPosition = new Vector2(-1, -0.35f);
+                _fishingPos.localPosition = new Vector2(1, -0.35f);
                 break;
             case PlayerDirection.front:
                 dirType = Vector2.down;
@@ -50,7 +52,7 @@ public class FishingDummy : MonoBehaviour
                 break;
             case PlayerDirection.left:
                 dirType = Vector2.left;
-                _fishingPos.localPosition = new Vector2(1, -0.35f);
+                _fishingPos.localPosition = new Vector2(-1, -0.35f);
                 break;
             case PlayerDirection.right:
                 dirType = Vector2.right;
