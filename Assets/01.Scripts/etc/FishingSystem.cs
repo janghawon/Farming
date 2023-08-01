@@ -37,7 +37,6 @@ public class FishingSystem : MonoBehaviour
         _startPos = _dummyTrans.position;
 
         dir = (Vector2)_player.position - _startPos.normalized;
-        dir /= _completeValue;
         _fishingDum.isMoving = true;
     }
 
@@ -68,7 +67,7 @@ public class FishingSystem : MonoBehaviour
     Vector3 dir;
     private void Shaking(int val)
     {
-        _dummyTrans.position += dir * val;
+        _dummyTrans.position += -dir * 0.1f * val;
     }
 
     private void FishingLogic()
@@ -83,7 +82,7 @@ public class FishingSystem : MonoBehaviour
 
     IEnumerator WaitingFishing()
     {
-        yield return new WaitForSeconds(_waitingTime);
+        yield return new WaitForSeconds(_waitingTime * 0.7f);
         Debug.Log("¿‚»˚!!");
         isFishing = true;
     }
