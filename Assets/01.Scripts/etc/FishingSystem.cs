@@ -5,6 +5,8 @@ using UnityEngine.Events;
 
 public class FishingSystem : MonoBehaviour
 {
+    [SerializeField] private Transform _dummyTrans;
+    Vector2 _startPos;
     private float _waitingTime;
     [SerializeField] [Range(1, 10)] private float _minWatingTime;
     [SerializeField] [Range(2, 11)] private float _maxWatingTime;
@@ -24,6 +26,7 @@ public class FishingSystem : MonoBehaviour
     {
         _waitingTime = Random.Range(_minWatingTime, _maxWatingTime);
         _completeValue = Random.Range(_minComValue, _maxComValue);
+        _startPos = _dummyTrans.position;
     }
 
     private void Update()
@@ -46,6 +49,12 @@ public class FishingSystem : MonoBehaviour
             }
         }
         FishingLogic();
+        Shaking();
+    }
+
+    private void Shaking()
+    {
+
     }
 
     private void FishingLogic()
