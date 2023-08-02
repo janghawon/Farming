@@ -13,11 +13,6 @@ public class FishingSystem : MonoBehaviour
     [SerializeField] [Range(1, 10)] private float _minWatingTime;
     [SerializeField] [Range(2, 11)] private float _maxWatingTime;
 
-    [SerializeField] private int _completeValue;
-    [SerializeField] private int _currentValue = -1;
-    [SerializeField] [Range(10, 20)] private int _minComValue;
-    [SerializeField] [Range(21, 40)] private int _maxComValue;
-
     public bool isFishing;
     public bool isFIshingStart { get; set; }
 
@@ -33,18 +28,13 @@ public class FishingSystem : MonoBehaviour
     public void FishingStart()
     {
         _waitingTime = Random.Range(_minWatingTime, _maxWatingTime);
-        _completeValue = Random.Range(_minComValue, _maxComValue);
-        _startPos = _dummyTrans.position;
-
-        dir = (Vector2)_player.position - _startPos.normalized;
-        _fishingDum.isMoving = true;
     }
 
     private void Update()
     {
         if(isFishing)
         {
-            if(Time.frameCount % 20 == 0)
+            if(Time.frameCount % 70 == 0)
             {
                 Shaking(-1);
             }
@@ -67,7 +57,7 @@ public class FishingSystem : MonoBehaviour
     Vector3 dir;
     private void Shaking(int val)
     {
-        _dummyTrans.position += -dir * 0.1f * val;
+        _dummyTrans.position += dir * val;
     }
 
     private void FishingLogic()
@@ -84,6 +74,11 @@ public class FishingSystem : MonoBehaviour
     {
         yield return new WaitForSeconds(_waitingTime * 0.7f);
         Debug.Log("¿‚»˚!!");
+        _startPos = _dummyTrans.position;
+        dir = (Vector2)_player.position - _startPos;
+        dir.Normalize();
+
+        _fishingDum.isMoving = true;
         isFishing = true;
     }
 }

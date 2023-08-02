@@ -90,6 +90,10 @@ public class PlayerFishing : MonoBehaviour
         {
             SetChargingTexture(pdir);
             chargingValue++;
+            if(chargingValue >= 320)
+            {
+                chargingValue = 320;
+            }
         }
         if(Input.GetMouseButtonUp(0) && canCharging)
         {

@@ -11,7 +11,7 @@ public class FishingDummy : MonoBehaviour
     Vector2 dirType;
     Camera _cam;
     Transform _player;
-    public bool isMoving { get; set; }
+    public bool isMoving;
 
     private void Awake()
     {
@@ -65,11 +65,12 @@ public class FishingDummy : MonoBehaviour
 
         _sr.enabled = true;
         _rigid.bodyType = RigidbodyType2D.Dynamic;
+        Debug.Log(force);
         if (force < 3)
             force = 3;
         if (force > 5f)
             force = 5f;
-        _rigid.AddForce(dirType * force * 2, ForceMode2D.Impulse);
+        _rigid.AddForce(dirType * force, ForceMode2D.Impulse);
         StartCoroutine(Turm(force));
     }
 
