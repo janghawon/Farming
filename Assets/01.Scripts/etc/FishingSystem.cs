@@ -51,8 +51,6 @@ public class FishingSystem : MonoBehaviour
             }
             
         }
-        FishingLogic();
-        
     }
     Vector3 dir;
     private void Shaking(int val)
@@ -60,19 +58,14 @@ public class FishingSystem : MonoBehaviour
         _dummyTrans.position += dir * val;
     }
 
-    private void FishingLogic()
+    public void FishingLogic()
     {
-        #region Lock
-        if (!isFIshingStart)
-            return;
-        isFIshingStart = false;
-        #endregion
         StartCoroutine(WaitingFishing());
     }
 
     IEnumerator WaitingFishing()
     {
-        yield return new WaitForSeconds(_waitingTime * 0.7f);
+        yield return new WaitForSeconds(_waitingTime);
         Debug.Log("¿‚»˚!!");
         _startPos = _dummyTrans.position;
         dir = (Vector2)_player.position - _startPos;

@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class FishingDummy : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class FishingDummy : MonoBehaviour
     Camera _cam;
     Transform _player;
     public bool isMoving;
+    [SerializeField] private UnityEvent _waitingEvent;
 
     private void Awake()
     {
@@ -80,6 +82,7 @@ public class FishingDummy : MonoBehaviour
         isMoving = false;
         _rigid.gravityScale = 0;
         _rigid.bodyType = RigidbodyType2D.Kinematic;
+        _waitingEvent?.Invoke();
     }
 
     private void Update()

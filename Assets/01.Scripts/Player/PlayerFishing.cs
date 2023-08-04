@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
 
 public class PlayerFishing : MonoBehaviour
 {
@@ -16,6 +17,7 @@ public class PlayerFishing : MonoBehaviour
     [SerializeField] private UnityEvent<AnimationClip> _unBurstEvent;
     [SerializeField] private UnityEvent<PlayerDirection, float> _dummyEvent;
 
+    [SerializeField] private Image _chargeValueImage;
     [SerializeField] private int chargingValue;
     private int num;
     private SpriteRenderer _sr;
@@ -83,6 +85,7 @@ public class PlayerFishing : MonoBehaviour
                 _chargingEvent?.Invoke(_side[NumCalculator()]);
                 break;
         }
+        
     }
     public void Charging(PlayerDirection pdir)
     {
@@ -90,7 +93,8 @@ public class PlayerFishing : MonoBehaviour
         {
             SetChargingTexture(pdir);
             chargingValue++;
-            if(chargingValue >= 320)
+            _chargeValueImage.fillAmount = chargingValue / (float)320;
+            if (chargingValue >= 320)
             {
                 chargingValue = 320;
             }
