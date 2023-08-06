@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class SunSet : MonoBehaviour
 {
+    [SerializeField] private Color _afternoon;
+    [SerializeField] private Color _day;
     [SerializeField] private float _rotationSpeed;
+
     private void Update()
     {
         Vector3 currentRotation = transform.rotation.eulerAngles;
@@ -15,5 +18,6 @@ public class SunSet : MonoBehaviour
         {
             transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
         }
+        
     }
 }
