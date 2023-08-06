@@ -66,8 +66,9 @@ public class FishingDummy : MonoBehaviour
         _cam.transform.parent = transform;
 
         _sr.enabled = true;
+        _rigid.gravityScale = 0;
         _rigid.bodyType = RigidbodyType2D.Dynamic;
-        Debug.Log(force);
+       
         if (force < 3)
             force = 3;
         if (force > 5f)
